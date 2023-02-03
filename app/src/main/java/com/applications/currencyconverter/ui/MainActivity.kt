@@ -22,6 +22,7 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var sharedPreferences: SharedPreferences
+    var mList: List<CurrencyEntities> = ArrayList()
     lateinit var adapter : CurrencyRVAdapter
     lateinit var etAmount : String
     var baseCurrency: String? = null
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         viewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
+adapter = CurrencyRVAdapter(mList,"1")
         progressDialog = Helper.showProgressBar(
             this,
             (getString(R.string.loading_data)),
